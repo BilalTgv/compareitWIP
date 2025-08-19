@@ -7,10 +7,8 @@ namespace compareitWIP
 {
     public class MainForm : Form
     {
-
-        //hasushauhasuhasuas
-        private TextBox txtPath1;
-        private TextBox txtPath2;
+        private ComboBox cmbPath1;
+        private ComboBox cmbPath2;
         private Button btnBrowse1;
         private Button btnBrowse2;
         private Button btnCompare;

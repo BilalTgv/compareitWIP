@@ -39,6 +39,7 @@ namespace compareitWIP
 
             txtResults = new TextBox() { Multiline = true, ScrollBars = ScrollBars.Vertical, Top = 140, Left = 10, Width = 660, Height = 350, ReadOnly = true };
 
+            // Add controls
             this.Controls.Add(lbl1);
             this.Controls.Add(cmbPath1);
             this.Controls.Add(btnBrowse1);
@@ -48,6 +49,20 @@ namespace compareitWIP
             this.Controls.Add(btnCompare);
             this.Controls.Add(btnCopyActions);
             this.Controls.Add(txtResults);
+
+            // Anchors for resizing
+            lbl1.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            cmbPath1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            btnBrowse1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+
+            lbl2.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            cmbPath2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            btnBrowse2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+
+            btnCompare.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            btnCopyActions.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+
+            txtResults.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         }
 
         private void BrowseFolder(ComboBox target)

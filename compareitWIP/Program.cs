@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ namespace compareitWIP
 
         public MainForm()
         {
+            this.Icon = new Icon("icon.ico");
             this.Text = "File Comparer";
             this.Width = 700;
             this.Height = 550;

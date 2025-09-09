@@ -14,6 +14,7 @@ namespace compareitWIP
         private Button btnBrowse2;
         private Button btnCompare;
         private Button btnCopyActions;
+        private Button btnSaveOutput;
         private TextBox txtResults;
 
         public MainForm()
@@ -39,6 +40,9 @@ namespace compareitWIP
             btnCopyActions = new Button() { Text = "Copy/Sync Options", Top = 100, Left = 200, Width = 150 };
             btnCopyActions.Click += (s, e) => ShowCopyActionsPopup();
 
+            btnSaveOutput = new Button() { Text = "Save Output", Top = 100, Left = 360, Width = 120 };
+            btnSaveOutput.Click += (s, e) => SaveOutputToFile();
+
             txtResults = new TextBox() { Multiline = true, ScrollBars = ScrollBars.Vertical, Top = 140, Left = 10, Width = 660, Height = 350, ReadOnly = true };
 
             // Add controls
@@ -50,6 +54,7 @@ namespace compareitWIP
             this.Controls.Add(btnBrowse2);
             this.Controls.Add(btnCompare);
             this.Controls.Add(btnCopyActions);
+            this.Controls.Add(btnSaveOutput);
             this.Controls.Add(txtResults);
 
             // Anchors for resizing
@@ -63,6 +68,7 @@ namespace compareitWIP
 
             btnCompare.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             btnCopyActions.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            btnSaveOutput.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 
             txtResults.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         }
@@ -138,6 +144,24 @@ namespace compareitWIP
                     txtResults.AppendText("\r\nFiles only in Folder 2:\r\n");
                     foreach (var f in onlyIn2)
                         txtResults.AppendText(" - " + f + "\r\n");
+                }
+            }
+        }
+
+        private void SaveOutputToFile()
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+                sfd.Title = "Save Output";
+                sfd.FileName = "output.txt";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    File.WriteAllText(sfd.FileName, txtResults.Text);
+                    MessageBox.Show("Results saved to: " + sfd.FileName);
+
+                    System.Diagnostics.Process.Start("notepad.exe", sfd.FileName);
                 }
             }
         }
